@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.logo {
+  width: 100px; /* 你可以根据需求调整大小 */
+  height: auto; /* 保持比例 */
+  margin: 0 auto; /* 居中对齐 */
+}
+
+.spacing {
+    margin-top: 20px; /* 调整间隔 */
+}
