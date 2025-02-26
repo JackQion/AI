@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // 创建一个 Axios 实例
 const api = axios.create({
-  baseURL: 'http://192.168.4.23:5000',
+  baseURL: 'http://127.0.0.1:5000',
   timeout: 15000,
   headers: { 'Content-Type': "application/json; charset=utf-8" }
 });

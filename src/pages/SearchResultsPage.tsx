@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { ChevronLeft, FileText, Download, Search } from 'lucide-react';
+import UserMenu from '../components/UserMenu';
+import type { UserProfile } from '../App';
 
 interface SearchResultsPageProps {
   query: string;
   onBack: () => void;
+  userProfile: UserProfile | null;
+  onLogout?: () => void;
 }
 
 interface SearchResult {
@@ -46,7 +50,7 @@ const mockResults: SearchResult[] = [
   }
 ];
 
-export default function SearchResultsPage({ query, onBack }: SearchResultsPageProps) {
+export default function SearchResultsPage({ query, onBack, userProfile, onLogout }: SearchResultsPageProps) {
   const [timeFilter, setTimeFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
   const [searchInput, setSearchInput] = useState(query);
@@ -61,14 +65,17 @@ export default function SearchResultsPage({ query, onBack }: SearchResultsPagePr
     <div className="h-full bg-white flex flex-col">
       {/* Header */}
       <div className="border-b px-6 py-4">
-        <div className="flex items-center space-x-4 mb-4">
-          <button
-            onClick={onBack}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <h1 className="text-xl font-semibold">搜索</h1>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={onBack}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <h1 className="text-xl font-semibold">搜索</h1>
+          </div>
+          <UserMenu userProfile={userProfile} onLogout={onLogout} />
         </div>
 
         {/* Search Input */}

@@ -22,15 +22,16 @@ export default function LoginPage({ onLogin, onRegister }: LoginPageProps) {
     
     try {
       const result = await login({ name: username, password: password });
-      console.log(result);
+      // console.log(result);
       if(result.data.success === true){
         onLogin(username, password);
         let data = result.data.data;
-        console.log(data);
+        // console.log(data);
         message.success('登录成功');
         sessionStorage.setItem('api_key', data.api_key);
         sessionStorage.setItem('username', username);
         sessionStorage.setItem('id', data.id);
+        sessionStorage.setItem('team_id',"7298602157119508487");
       }
       else{
         message.error('登录失败，请检查用户名和密码');
@@ -41,6 +42,10 @@ export default function LoginPage({ onLogin, onRegister }: LoginPageProps) {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleForgotClick = () => {
+      onLogin("123", "456");
   };
 
   return (
@@ -114,9 +119,16 @@ export default function LoginPage({ onLogin, onRegister }: LoginPageProps) {
             </div>
 
             <div className="text-sm">
-              <a href="#" className="font-medium text-blue-500 hover:text-blue-400">
+              {/* <a href="#" className="font-medium text-blue-500 hover:text-blue-400" onClick="handleForgotClick(event)">
                 忘记密码了吗？
-              </a>
+              </a> */}
+              <button
+                type="button"
+                onClick={handleForgotClick}
+                className="font-medium text-blue-500 hover:text-blue-400"
+              >
+                忘记密码了吗？
+              </button>
             </div>
           </div>
 
